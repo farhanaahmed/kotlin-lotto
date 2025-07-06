@@ -5,6 +5,16 @@
 This is a **Kotlin** project for building a simple lottery ticket machine.  
 The application allows users to purchase lotto tickets, enter winning numbers (6 digits separated by comma) and a bonus number, generate the appropriate number of Lotto tickets and check winning results.
 
+To complete this project, I have used **TDD** and **Pair Programming**.
+
+I’m still quite new to both TDD and pair programming, but I’d say they were really valuable experiences for me.
+
+With Test-Driven Development, it was honestly a bit hard at first. Writing the tests before writing the actual logic felt unnatural and slower than I expected. But as I kept going, I realized it gave me a much clearer direction and helped me avoid overcomplicating my code. It made me think more precisely about what the code should do before jumping into implementation, which I found really helpful.
+
+Pair programming was also something I hadn’t really done in this way before, especially sharing a single laptop and constantly switching roles. At first, it was a bit intimidating, but I quickly saw how useful it was. It pushed me to explain my thought process clearly and think critically about decisions in real-time. I also learned a lot just by watching how my pair approached problems differently.
+
+Overall, both practices challenged me, but in a very positive way. I feel like I grew a lot from them and want to keep improving in both areas.
+
 ---
 
 ## Features
