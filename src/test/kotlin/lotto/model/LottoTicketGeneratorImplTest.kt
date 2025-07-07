@@ -27,9 +27,15 @@ class LottoTicketGeneratorImplTest {
 
     @Test
     fun `generates tickets with 6 numbers each`() {
+        val tickets =
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 18),
+            )
         val numberOfTickets = 3
 
-        val result = lottoTicketGenerator.generateTickets(numberOfTickets)
+        val result = lottoTicketGenerator.generateTickets(tickets, numberOfTickets)
 
         assertThat(result).allSatisfy {
             assertThat(it.getTickets()).hasSize(6)
@@ -38,9 +44,15 @@ class LottoTicketGeneratorImplTest {
 
     @Test
     fun `generates tickets with numbers between 1 and 45`() {
+        val tickets =
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 18),
+            )
         val numberOfTickets = 2
 
-        val result = lottoTicketGenerator.generateTickets(numberOfTickets)
+        val result = lottoTicketGenerator.generateTickets(tickets, numberOfTickets)
 
         assertThat(result).allSatisfy {
             it.getTickets().forEach { number ->
@@ -51,23 +63,34 @@ class LottoTicketGeneratorImplTest {
 
     @Test
     fun `throws an exception if ticket has more than 6 numbers`() {
+        val tickets =
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 18),
+            )
         val faultyRandomNumbersGenerator =
             object :
                 RandomNumbersGeneratorWrapper {
                 override fun generateRandomNumbers(): List<Int> {
-                    return listOf(1, 2, 3, 4, 5, 6, 7)
+                    return listOf(1, 2, 3, 4, 5)
                 }
             }
-
-        val faultyLottoTicketGenerator: LottoTicketGenerator = LottoTicketGeneratorImpl(faultyRandomNumbersGenerator)
-
+        val faultyLottoTicketGenerator: LottoTicketGenerator =
+            LottoTicketGeneratorImpl(faultyRandomNumbersGenerator)
         assertThrows<IllegalArgumentException> {
-            faultyLottoTicketGenerator.generateTickets(1)
+            faultyLottoTicketGenerator.generateTickets(tickets, 1)
         }
     }
 
     @Test
     fun `throws an exception if ticket has less than 6 numbers`() {
+        val tickets =
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 18),
+            )
         val faultyRandomNumbersGenerator =
             object :
                 RandomNumbersGeneratorWrapper {
@@ -79,7 +102,7 @@ class LottoTicketGeneratorImplTest {
         val faultyLottoTicketGenerator: LottoTicketGenerator = LottoTicketGeneratorImpl(faultyRandomNumbersGenerator)
 
         assertThrows<IllegalArgumentException> {
-            faultyLottoTicketGenerator.generateTickets(1)
+            faultyLottoTicketGenerator.generateTickets(tickets, 1)
         }
     }
 }

@@ -3,7 +3,10 @@ package lotto.model
 interface LottoTicketGenerator {
     fun generateNumberOfTickets(purchaseAmount: Int): Int
 
-    fun generateTickets(numberOfTickets: Int): Set<Lotto>
+    fun generateTickets(
+        manualTickets: Set<Set<Int>>,
+        numberOfTickets: Int,
+    ): Set<Lotto>
 
     fun generateRandomNumbers(): List<Int>
 }
@@ -15,8 +18,12 @@ class LottoTicketGeneratorImpl(private val randomNumbersGeneratorWrapper: Random
         return numberOfTickets
     }
 
-    override fun generateTickets(numberOfTickets: Int): Set<Lotto> {
+    override fun generateTickets(
+        manualTickets: Set<Set<Int>>,
+        numberOfTickets: Int,
+    ): Set<Lotto> {
         val tickets = mutableSetOf<Lotto>()
+        tickets.addAll(manualTickets.map { LottoImpl(it.toList().sorted()) })
         repeat(numberOfTickets) {
             val singleTicket = generateRandomNumbers().sorted()
             val lottoTicket = LottoImpl(singleTicket)
