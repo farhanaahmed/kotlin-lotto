@@ -36,7 +36,7 @@ class InputValidatorImplTest {
     }
 
     @Test
-    fun `works for valid number of manual tickets`() {
+    fun `doesn't throw an exception for valid number of manual tickets`() {
         val tickets =
             listOf(
                 listOf(1, 2, 3, 4, 5, 6),
@@ -49,7 +49,7 @@ class InputValidatorImplTest {
     }
 
     @Test
-    fun `fails when a ticket does not have exactly 6 numbers`() {
+    fun `throws an exception when a ticket does not have exactly 6 numbers`() {
         val tickets =
             listOf(
                 listOf(1, 2, 3, 4, 5),
@@ -65,7 +65,7 @@ class InputValidatorImplTest {
     }
 
     @Test
-    fun `fails when numbers are out of range`() {
+    fun `throws an exception when numbers are out of range`() {
         val tickets =
             listOf(
                 listOf(1, 2, 3, 4, 5, 100),
@@ -81,7 +81,7 @@ class InputValidatorImplTest {
     }
 
     @Test
-    fun `fails when numbers are not unique`() {
+    fun `throws an exception when numbers are not unique`() {
         val tickets =
             listOf(
                 listOf(1, 1, 2, 3, 4, 5),
