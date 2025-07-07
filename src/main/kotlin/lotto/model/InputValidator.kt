@@ -1,43 +1,22 @@
 package lotto.model
 
-interface InputValidator {
-    fun validatePurchaseAmount(purchaseAmount: Int)
-
-    fun validateManualTicketAmount(
-        purchaseAmount: Int,
-        numberOfManualTickets: Int,
-    )
-
-    fun validateManualTickets(
-        numberOfManualTickets: Int,
-        manualTickets: List<List<Int>>,
-    )
-
-    fun validateWinningNumbers(winningNumbers: List<Int>)
-
-    fun validateBonusNumber(
-        bonusNumber: Int,
-        winningNumbers: List<Int>,
-    )
-}
-
-class InputValidatorImpl : InputValidator {
-    override fun validatePurchaseAmount(purchaseAmount: Int) {
+class InputValidator {
+    fun validatePurchaseAmount(purchaseAmount: Int) {
         require(purchaseAmount >= DIVISOR && purchaseAmount % DIVISOR == 0) {
             "Purchase amount must be an integer number greater than or equal 1000 and divisible by 1000."
         }
     }
 
-    override fun validateManualTicketAmount(
+    fun validateManualTicketAmount(
         purchaseAmount: Int,
         numberOfManualTickets: Int,
     ) {
         require(purchaseAmount >= numberOfManualTickets * 1000) {
-            "Not enough money to buy $numberOfManualTickets manual tickets with $purchaseAmount units."
+            "Not enough money to buy $numberOfManualTickets manual tickets with $purchaseAmount KRW."
         }
     }
 
-    override fun validateManualTickets(
+    fun validateManualTickets(
         numberOfManualTickets: Int,
         manualTickets: List<List<Int>>,
     ) {
@@ -51,7 +30,7 @@ class InputValidatorImpl : InputValidator {
         }
     }
 
-    override fun validateWinningNumbers(winningNumbers: List<Int>) {
+    fun validateWinningNumbers(winningNumbers: List<Int>) {
         require(winningNumbers.size == REQUIRED_COUNT) {
             "Winning numbers must contain exactly 6 integer numbers separated by comma."
         }
@@ -63,7 +42,7 @@ class InputValidatorImpl : InputValidator {
         }
     }
 
-    override fun validateBonusNumber(
+    fun validateBonusNumber(
         bonusNumber: Int,
         winningNumbers: List<Int>,
     ) {

@@ -1,19 +1,7 @@
 package lotto.view
 
-interface InputView {
-    fun readPurchaseAmount(): Int
-
-    fun readManualNumberOfTickets(): Int
-
-    fun readManualTickets(numberOfManualTickets: Int): List<List<Int>>
-
-    fun readWinningNumbers(): List<Int>
-
-    fun readBonusNumber(): Int
-}
-
-class InputViewImpl : InputView {
-    override fun readPurchaseAmount(): Int {
+class InputView {
+    fun readPurchaseAmount(): Int {
         println("Please enter the purchase amount.")
         return try {
             readln().toIntOrNull() ?: throw IllegalArgumentException("Input can not be empty.")
@@ -22,7 +10,7 @@ class InputViewImpl : InputView {
         }
     }
 
-    override fun readManualNumberOfTickets(): Int {
+    fun readManualNumberOfTickets(): Int {
         println("Enter the number of manual tickets to purchase.")
         return try {
             readln().toIntOrNull() ?: throw IllegalArgumentException("Input can not be empty.")
@@ -31,7 +19,7 @@ class InputViewImpl : InputView {
         }
     }
 
-    override fun readManualTickets(numberOfManualTickets: Int): List<List<Int>> {
+    fun readManualTickets(numberOfManualTickets: Int): List<List<Int>> {
         println("Enter the numbers for manual tickets.")
         val manualTickets = mutableListOf<List<Int>>()
 
@@ -53,7 +41,7 @@ class InputViewImpl : InputView {
         return manualTickets
     }
 
-    override fun readWinningNumbers(): List<Int> {
+    fun readWinningNumbers(): List<Int> {
         println("Please enter last week’s winning numbers.")
         return try {
             readlnOrNull()
@@ -66,7 +54,7 @@ class InputViewImpl : InputView {
         }
     }
 
-    override fun readBonusNumber(): Int {
+    fun readBonusNumber(): Int {
         println("Please enter the bonus number.")
         return try {
             readln().toIntOrNull() ?: throw IllegalArgumentException("Input can not be empty.")

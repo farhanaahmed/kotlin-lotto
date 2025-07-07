@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class LottoTicketGeneratorImplTest {
+class LottoTicketGeneratorTest {
     private val randomNumbersGeneratorWrapper =
         object :
             RandomNumbersGeneratorWrapper {
@@ -15,7 +15,7 @@ class LottoTicketGeneratorImplTest {
             }
         }
 
-    private val lottoTicketGenerator: LottoTicketGenerator = LottoTicketGeneratorImpl(randomNumbersGeneratorWrapper)
+    private val lottoTicketGenerator: LottoTicketGenerator = LottoTicketGenerator(randomNumbersGeneratorWrapper)
 
     @ParameterizedTest
     @ValueSource(ints = [1000, 2000, 3000, 4000, 15000])
@@ -83,8 +83,8 @@ class LottoTicketGeneratorImplTest {
                     return listOf(1, 2, 3, 4, 5)
                 }
             }
-        val faultyLottoTicketGenerator: LottoTicketGenerator =
-            LottoTicketGeneratorImpl(faultyRandomNumbersGenerator)
+        val faultyLottoTicketGenerator =
+            LottoTicketGenerator(faultyRandomNumbersGenerator)
         assertThrows<IllegalArgumentException> {
             faultyLottoTicketGenerator.generateTickets(tickets, 1)
         }
@@ -106,7 +106,7 @@ class LottoTicketGeneratorImplTest {
                 }
             }
 
-        val faultyLottoTicketGenerator: LottoTicketGenerator = LottoTicketGeneratorImpl(faultyRandomNumbersGenerator)
+        val faultyLottoTicketGenerator = LottoTicketGenerator(faultyRandomNumbersGenerator)
 
         assertThrows<IllegalArgumentException> {
             faultyLottoTicketGenerator.generateTickets(tickets, 1)

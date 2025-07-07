@@ -1,22 +1,7 @@
 package lotto.model
 
-interface LottoTicketGenerator {
+class LottoTicketGenerator(private val randomNumbersGeneratorWrapper: RandomNumbersGeneratorWrapper) {
     fun generateNumberOfTickets(
-        purchaseAmount: Int,
-        numberOfManualTickets: Int,
-    ): Int
-
-    fun generateTickets(
-        manualTickets: List<List<Int>>,
-        numberOfTickets: Int,
-    ): List<Lotto>
-
-    fun generateRandomNumbers(): List<Int>
-}
-
-class LottoTicketGeneratorImpl(private val randomNumbersGeneratorWrapper: RandomNumbersGeneratorWrapper) :
-    LottoTicketGenerator {
-    override fun generateNumberOfTickets(
         purchaseAmount: Int,
         numberOfManualTickets: Int,
     ): Int {
@@ -24,21 +9,21 @@ class LottoTicketGeneratorImpl(private val randomNumbersGeneratorWrapper: Random
         return numberOfTickets
     }
 
-    override fun generateTickets(
+    fun generateTickets(
         manualTickets: List<List<Int>>,
         numberOfTickets: Int,
     ): List<Lotto> {
         val tickets = mutableListOf<Lotto>()
-        tickets.addAll(manualTickets.map { LottoImpl(it.sorted()) })
+        tickets.addAll(manualTickets.map { Lotto(it.sorted()) })
         repeat(numberOfTickets) {
             val singleTicket = generateRandomNumbers().sorted()
-            val lottoTicket = LottoImpl(singleTicket)
+            val lottoTicket = Lotto(singleTicket)
             tickets.add(lottoTicket)
         }
         return tickets
     }
 
-    override fun generateRandomNumbers(): List<Int> {
+    fun generateRandomNumbers(): List<Int> {
         return randomNumbersGeneratorWrapper.generateRandomNumbers()
     }
 

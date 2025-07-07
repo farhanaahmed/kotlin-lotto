@@ -6,8 +6,8 @@ import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class InputValidatorImplTest {
-    private val inputValidator: InputValidator = InputValidatorImpl()
+class InputValidatorTest {
+    private val inputValidator: InputValidator = InputValidator()
 
     @Test
     fun `throws an exception for purchase amount less than 1000`() {
@@ -36,7 +36,7 @@ class InputValidatorImplTest {
     }
 
     @Test
-    fun `should throw error when manual ticket count exceeds budget`() {
+    fun `throws an exception when manual ticket count exceeds budget`() {
         val purchaseAmount = 1000
         val manualTickets = 2
 

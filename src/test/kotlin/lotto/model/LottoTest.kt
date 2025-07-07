@@ -4,45 +4,45 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 
-class LottoImplTest {
+class LottoTest {
     @Test
     fun `throws an exception when lotto numbers exceed six`() {
         assertThrows<IllegalArgumentException> {
-            LottoImpl(listOf(1, 2, 3, 4, 5, 6, 7))
+            Lotto(listOf(1, 2, 3, 4, 5, 6, 7))
         }
     }
 
     @Test
     fun `throws an exception when lotto numbers contain duplicates`() {
         assertThrows<IllegalArgumentException> {
-            LottoImpl(listOf(1, 2, 3, 4, 5, 5))
+            Lotto(listOf(1, 2, 3, 4, 5, 5))
         }
     }
 
     @Test
     fun `throws an exception when lotto numbers are out of valid range`() {
         assertThrows<IllegalArgumentException> {
-            LottoImpl(listOf(0, 2, 3, 4, 5, 6))
+            Lotto(listOf(0, 2, 3, 4, 5, 6))
         }
     }
 
     @Test
     fun `creates a Lotto successfully when numbers are valid`() {
-        val lotto = LottoImpl(listOf(1, 2, 3, 4, 5, 6))
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
 
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]")
     }
 
     @Test
     fun `Lotto should sort numbers in ascending order`() {
-        val lotto = LottoImpl(listOf(6, 1, 3, 2, 5, 4))
+        val lotto = Lotto(listOf(6, 1, 3, 2, 5, 4))
 
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]")
     }
 
     @Test
     fun `counts matching numbers correctly`() {
-        val lotto = LottoImpl(listOf(1, 2, 3, 4, 5, 6))
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val winningNumbers = listOf(1, 2, 7, 8, 9, 10)
 
         assertThat(lotto.matchCount(winningNumbers)).isEqualTo(2)
@@ -50,7 +50,7 @@ class LottoImplTest {
 
     @Test
     fun `returns true if bonus number exists`() {
-        val lotto = LottoImpl(listOf(1, 2, 3, 4, 5, 6))
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val bonus = 5
 
         assertThat(lotto.containsBonus(bonus)).isTrue()
@@ -58,7 +58,7 @@ class LottoImplTest {
 
     @Test
     fun `returns false if bonus number does not exist`() {
-        val lotto = LottoImpl(listOf(1, 2, 3, 4, 5, 6))
+        val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val bonus = 7
 
         assertThat(lotto.containsBonus(bonus)).isFalse()
@@ -66,7 +66,7 @@ class LottoImplTest {
 
     @Test
     fun `should return sorted numbers when getTickets is called`() {
-        val lotto = LottoImpl(listOf(5, 12, 39, 1, 28, 44))
+        val lotto = Lotto(listOf(5, 12, 39, 1, 28, 44))
 
         val tickets = lotto.getTickets()
 

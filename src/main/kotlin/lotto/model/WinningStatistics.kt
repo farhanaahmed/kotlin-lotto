@@ -1,19 +1,9 @@
 package lotto.model
 
-interface WinningStatistics {
-    fun calculateResult(
-        tickets: List<Lotto>,
-        winningNumbers: List<Int>,
-        bonusNumber: Int,
-    ): Map<Rank, Int>
-
-    fun calculateReturnRate(purchaseAmount: Int): Double
-}
-
-class WinningStatisticsImpl : WinningStatistics {
+class WinningStatistics {
     private val results = mutableMapOf<Rank, Int>()
 
-    override fun calculateResult(
+    fun calculateResult(
         tickets: List<Lotto>,
         winningNumbers: List<Int>,
         bonusNumber: Int,
@@ -29,7 +19,7 @@ class WinningStatisticsImpl : WinningStatistics {
         return results.toMap()
     }
 
-    override fun calculateReturnRate(purchaseAmount: Int): Double {
+    fun calculateReturnRate(purchaseAmount: Int): Double {
         val totalPrize =
             results.entries.sumOf { (rank, count) ->
                 rank.winningMoney.toLong() * count // Prevents overflow

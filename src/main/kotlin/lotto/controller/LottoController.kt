@@ -1,23 +1,19 @@
 package lotto.controller
 
-import lotto.model.InputValidatorImpl
+import lotto.model.InputValidator
 import lotto.model.Lotto
 import lotto.model.LottoTicketGenerator
 import lotto.model.WinningStatistics
 import lotto.view.InputView
 import lotto.view.ResultView
 
-interface LottoController {
-    fun run()
-}
-
-class LottoControllerImpl(
+class LottoController(
     private val inputView: InputView,
-    private val inputValidatorImpl: InputValidatorImpl,
+    private val inputValidator: InputValidator,
     private val resultView: ResultView,
     private val lottoTicketGenerator: LottoTicketGenerator,
     private val winningStatistics: WinningStatistics,
-) : LottoController {
+) {
     private fun processTickets(
         purchaseAmount: Int,
         numberOfManualTickets: Int,
@@ -54,16 +50,16 @@ class LottoControllerImpl(
         resultView.printReturnRate(returnRate)
     }
 
-    override fun run() {
+    fun run() {
         val purchaseAmount = inputView.readPurchaseAmount()
-        inputValidatorImpl.validatePurchaseAmount(purchaseAmount)
+        inputValidator.validatePurchaseAmount(purchaseAmount)
         val numberOfManualTickets = inputView.readManualNumberOfTickets()
-        inputValidatorImpl.validateManualTicketAmount(purchaseAmount, numberOfManualTickets)
+        inputValidator.validateManualTicketAmount(purchaseAmount, numberOfManualTickets)
         val tickets = processTickets(purchaseAmount, numberOfManualTickets)
         val winningNumbers = inputView.readWinningNumbers()
-        inputValidatorImpl.validateWinningNumbers(winningNumbers)
+        inputValidator.validateWinningNumbers(winningNumbers)
         val bonusNumber = inputView.readBonusNumber()
-        inputValidatorImpl.validateBonusNumber(bonusNumber, winningNumbers)
+        inputValidator.validateBonusNumber(bonusNumber, winningNumbers)
         processResult(tickets, winningNumbers, bonusNumber)
         processReturnRate(purchaseAmount)
     }

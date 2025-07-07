@@ -1,16 +1,6 @@
 package lotto.model
 
-interface Lotto {
-    fun matchCount(winningNumbers: List<Int>): Int
-
-    fun containsBonus(bonusNumber: Int): Boolean
-
-    fun getTickets(): List<Int>
-
-    override fun toString(): String
-}
-
-class LottoImpl(private val numbers: List<Int>) : Lotto {
+class Lotto(private val numbers: List<Int>) {
     private val sortedNumbers: List<Int>
 
     init {
@@ -20,15 +10,15 @@ class LottoImpl(private val numbers: List<Int>) : Lotto {
         sortedNumbers = numbers.sorted()
     }
 
-    override fun matchCount(winningNumbers: List<Int>): Int {
+    fun matchCount(winningNumbers: List<Int>): Int {
         return numbers.count { it in winningNumbers }
     }
 
-    override fun containsBonus(bonusNumber: Int): Boolean {
+    fun containsBonus(bonusNumber: Int): Boolean {
         return bonusNumber in numbers
     }
 
-    override fun getTickets(): List<Int> {
+    fun getTickets(): List<Int> {
         return sortedNumbers
     }
 

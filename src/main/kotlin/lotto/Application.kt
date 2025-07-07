@@ -1,24 +1,24 @@
 package lotto
 
-import lotto.controller.LottoControllerImpl
-import lotto.model.InputValidatorImpl
-import lotto.model.LottoTicketGeneratorImpl
+import lotto.controller.LottoController
+import lotto.model.InputValidator
+import lotto.model.LottoTicketGenerator
 import lotto.model.RandomNumbersGeneratorWrapperImpl
-import lotto.model.WinningStatisticsImpl
-import lotto.view.InputViewImpl
-import lotto.view.ResultViewImpl
+import lotto.model.WinningStatistics
+import lotto.view.InputView
+import lotto.view.ResultView
 
 fun main() {
     val lottoController =
-        LottoControllerImpl(
-            inputView = InputViewImpl(),
-            resultView = ResultViewImpl(),
+        LottoController(
+            inputView = InputView(),
+            resultView = ResultView(),
             lottoTicketGenerator =
-                LottoTicketGeneratorImpl(
+                LottoTicketGenerator(
                     randomNumbersGeneratorWrapper = RandomNumbersGeneratorWrapperImpl(),
                 ),
-            inputValidatorImpl = InputValidatorImpl(),
-            winningStatistics = WinningStatisticsImpl(),
+            inputValidator = InputValidator(),
+            winningStatistics = WinningStatistics(),
         )
     lottoController.run()
 }
