@@ -31,7 +31,7 @@ class WinningStatisticsImplTest {
     }
 
     @Test
-    fun `returns correct profit rate`() {
+    fun `returns correct return rate`() {
         val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         val bonusNumber = 7
         val tickets =
@@ -42,10 +42,10 @@ class WinningStatisticsImplTest {
         winningStatisticsImplTest.calculateResult(tickets, winningNumbers, bonusNumber)
         val purchaseAmount = 2000
         val expectedTotalPrize = Rank.FIRST.winningMoney + Rank.SECOND.winningMoney
-        val expectedProfitRate = (expectedTotalPrize.toDouble() / purchaseAmount)
+        val expectedReturnRate = (expectedTotalPrize.toDouble() / purchaseAmount)
 
         val profitRate = winningStatisticsImplTest.calculateReturnRate(purchaseAmount)
 
-        assertThat(profitRate).isEqualTo(expectedProfitRate)
+        assertThat(profitRate).isEqualTo(expectedReturnRate)
     }
 }
