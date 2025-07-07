@@ -5,6 +5,8 @@ interface InputView {
 
     fun readManualNumberOfTickets(): Int
 
+    fun readManualTickets(): List<List<Int>>
+
     fun readWinningNumbers(): List<Int>
 
     fun readBonusNumber(): Int
@@ -27,6 +29,29 @@ class InputViewImpl : InputView {
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("The number of manual tickets must be a number.")
         }
+    }
+
+    override fun readManualTickets(): List<List<Int>> {
+        println("Enter the numbers for manual tickets.")
+        val numberOfManualTickets = readManualNumberOfTickets()
+        val manualTickets = mutableListOf<List<Int>>()
+
+        repeat(numberOfManualTickets) {
+            try {
+                val ticket =
+                    readlnOrNull()
+                        ?.split(",")
+                        ?.map {
+                            it.trim().toInt()
+                        } ?: throw IllegalArgumentException("Input cannot be empty.")
+
+                manualTickets.add(ticket)
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException("Manual tickets must contain only integer numbers separated by commas.")
+            }
+        }
+
+        return manualTickets
     }
 
     override fun readWinningNumbers(): List<Int> {
