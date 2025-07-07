@@ -95,7 +95,7 @@ Please enter the bonus number.<br>
 7 <br>
 
 Winning Statistics <br>
-<span> ------------------ </span>
+------------------ <br>
 3 Matches (5,000 KRW) - 1 tickets <br>
 4 Matches (50,000 KRW) - 0 tickets <br>
 5 Matches (1,500,000 KRW) - 0 tickets <br>
