@@ -43,6 +43,8 @@ class LottoControllerImpl(
     override fun run() {
         val purchaseAmount = inputView.readPurchaseAmount()
         inputValidatorImpl.validatePurchaseAmount(purchaseAmount)
+        val numberOfManualTicket = inputView.readManualNumberOfTickets()
+        val manualTickets = inputView.readManualTickets(numberOfManualTicket)
         val tickets = processTickets(purchaseAmount)
         val winningNumbers = inputView.readWinningNumbers()
         inputValidatorImpl.validateWinningNumbers(winningNumbers)
