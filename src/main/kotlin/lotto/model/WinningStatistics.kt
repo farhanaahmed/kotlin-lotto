@@ -2,7 +2,7 @@ package lotto.model
 
 interface WinningStatistics {
     fun calculateResult(
-        tickets: Set<Lotto>,
+        tickets: List<Lotto>,
         winningNumbers: List<Int>,
         bonusNumber: Int,
     ): Map<Rank, Int>
@@ -14,7 +14,7 @@ class WinningStatisticsImpl : WinningStatistics {
     private val results = mutableMapOf<Rank, Int>()
 
     override fun calculateResult(
-        tickets: Set<Lotto>,
+        tickets: List<Lotto>,
         winningNumbers: List<Int>,
         bonusNumber: Int,
     ): Map<Rank, Int> {

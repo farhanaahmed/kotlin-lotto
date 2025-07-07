@@ -5,7 +5,7 @@ interface InputValidator {
 
     fun validateManualTickets(
         numberOfManualTickets: Int,
-        manualTickets: Set<Set<Int>>,
+        manualTickets: List<List<Int>>,
     )
 
     fun validateWinningNumbers(winningNumbers: List<Int>)
@@ -25,7 +25,7 @@ class InputValidatorImpl : InputValidator {
 
     override fun validateManualTickets(
         numberOfManualTickets: Int,
-        manualTickets: Set<Set<Int>>,
+        manualTickets: List<List<Int>>,
     ) {
         manualTickets.forEach { ticket ->
             require(ticket.size == REQUIRED_COUNT) {

@@ -5,7 +5,7 @@ interface InputView {
 
     fun readManualNumberOfTickets(): Int
 
-    fun readManualTickets(numberOfManualTickets: Int): Set<Set<Int>>
+    fun readManualTickets(numberOfManualTickets: Int): List<List<Int>>
 
     fun readWinningNumbers(): List<Int>
 
@@ -31,9 +31,9 @@ class InputViewImpl : InputView {
         }
     }
 
-    override fun readManualTickets(numberOfManualTickets: Int): Set<Set<Int>> {
+    override fun readManualTickets(numberOfManualTickets: Int): List<List<Int>> {
         println("Enter the numbers for manual tickets.")
-        val manualTickets = mutableSetOf<Set<Int>>()
+        val manualTickets = mutableListOf<List<Int>>()
 
         repeat(numberOfManualTickets) {
             try {
@@ -44,7 +44,7 @@ class InputViewImpl : InputView {
                             it.trim().toInt()
                         } ?: throw IllegalArgumentException("Input cannot be empty.")
 
-                manualTickets.add(ticket.toSet())
+                manualTickets.add(ticket)
             } catch (e: NumberFormatException) {
                 throw IllegalArgumentException("Manual tickets must contain only integer numbers separated by commas.")
             }
