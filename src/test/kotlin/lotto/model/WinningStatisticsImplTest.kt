@@ -11,7 +11,7 @@ class WinningStatisticsImplTest {
         val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         val bonusNumber = 7
         val tickets =
-            setOf<Lotto>(
+            listOf<Lotto>(
                 LottoImpl(listOf(1, 2, 3, 4, 5, 6)),
                 LottoImpl(listOf(1, 2, 3, 4, 5, 7)),
                 LottoImpl(listOf(1, 2, 3, 4, 5, 8)),
@@ -35,7 +35,7 @@ class WinningStatisticsImplTest {
         val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
         val bonusNumber = 7
         val tickets =
-            setOf<Lotto>(
+            listOf<Lotto>(
                 LottoImpl(listOf(1, 2, 3, 4, 5, 6)),
                 LottoImpl(listOf(1, 2, 3, 4, 5, 7)),
             )

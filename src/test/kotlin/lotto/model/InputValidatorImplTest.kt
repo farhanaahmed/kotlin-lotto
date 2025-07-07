@@ -38,10 +38,10 @@ class InputValidatorImplTest {
     @Test
     fun `doesn't throw an exception for valid number of manual tickets`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 18),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 18),
             )
 
         assertDoesNotThrow {
@@ -52,10 +52,10 @@ class InputValidatorImplTest {
     @Test
     fun `throws an exception when a ticket does not have exactly 6 numbers`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 18, 20),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 18, 20),
             )
 
         val exception =
@@ -69,10 +69,10 @@ class InputValidatorImplTest {
     @Test
     fun `throws an exception when numbers are out of range`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 90),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 90),
             )
 
         val exception =

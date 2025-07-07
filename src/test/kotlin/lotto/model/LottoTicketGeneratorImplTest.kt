@@ -17,21 +17,41 @@ class LottoTicketGeneratorImplTest {
 
     private val lottoTicketGenerator: LottoTicketGenerator = LottoTicketGeneratorImpl(randomNumbersGeneratorWrapper)
 
+    //    @ParameterizedTest
+//    @ValueSource(ints = [1000, 2000, 3000, 4000, 15000])
+//    fun `generate the correct number of tickets`(purchaseAmounts: Int) {
+//        val numberOfManualTickets = 3
+//        val rightNumberOfTickets = purchaseAmounts - (numberOfManualTickets * 1000) / 1000
+//        val numberOfTickets =
+//            lottoTicketGenerator
+//                .generateNumberOfTickets(
+//                    purchaseAmounts,
+//                    numberOfManualTickets,
+//                )
+//        assertThat(rightNumberOfTickets).isEqualTo(numberOfTickets)
+//    }
     @ParameterizedTest
     @ValueSource(ints = [1000, 2000, 3000, 4000, 15000])
-    fun `generate the correct number of tickets`(purchaseAmounts: Int) {
-        val rightNumberOfTickets = purchaseAmounts / 1000
-        val numberOfTickets = lottoTicketGenerator.generateNumberOfTickets(purchaseAmounts)
-        assertThat(rightNumberOfTickets).isEqualTo(numberOfTickets)
+    fun `generate the correct number of tickets`(purchaseAmount: Int) {
+        val numberOfManualTickets = 3
+        val rightNumberOfTickets = (purchaseAmount - (numberOfManualTickets * 1000)) / 1000
+
+        val numberOfTickets =
+            lottoTicketGenerator
+                .generateNumberOfTickets(
+                    purchaseAmount,
+                    numberOfManualTickets,
+                )
+        assertThat(numberOfTickets).isEqualTo(rightNumberOfTickets)
     }
 
     @Test
     fun `generates tickets with 6 numbers each`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 18),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 18),
             )
         val numberOfTickets = 3
 
@@ -45,10 +65,10 @@ class LottoTicketGeneratorImplTest {
     @Test
     fun `generates tickets with numbers between 1 and 45`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 18),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 18),
             )
         val numberOfTickets = 2
 
@@ -64,10 +84,10 @@ class LottoTicketGeneratorImplTest {
     @Test
     fun `throws an exception if ticket has more than 6 numbers`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 18),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 18),
             )
         val faultyRandomNumbersGenerator =
             object :
@@ -86,10 +106,10 @@ class LottoTicketGeneratorImplTest {
     @Test
     fun `throws an exception if ticket has less than 6 numbers`() {
         val tickets =
-            setOf(
-                setOf(1, 2, 3, 4, 5, 6),
-                setOf(7, 8, 9, 10, 11, 12),
-                setOf(13, 14, 15, 16, 17, 18),
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(7, 8, 9, 10, 11, 12),
+                listOf(13, 14, 15, 16, 17, 18),
             )
         val faultyRandomNumbersGenerator =
             object :
