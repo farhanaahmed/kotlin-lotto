@@ -1,11 +1,11 @@
 package lotto.model
 
 interface RandomNumbersGeneratorWrapper {
-    fun generateRandomNumbersInRange(): List<Int>
+    fun generateRandomNumbers(): List<Int>
 }
 
 class RandomNumbersGeneratorWrapperImpl : RandomNumbersGeneratorWrapper {
-    override fun generateRandomNumbersInRange(): List<Int> {
+    override fun generateRandomNumbers(): List<Int> {
         val listOfNumbers = (LOWER_RANGE..UPPER_RANGE).shuffled().take(REQUIRED_COUNT)
         return listOfNumbers
     }
