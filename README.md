@@ -19,11 +19,15 @@ Overall, both practices challenged me, but in a very positive way. I feel like I
 
 ## Features
 
-- Accepts user input for purchase amount and issue lotto tickets.
+- Accepts user input for purchase amount.
+- Accepts user input for how many tickets to buy manually.
+- Accepts user input for each manual ticket (comma-separated, 6 unique random numbers between 1 and 45).
+- The rest of the tickets are generated automatically by the system.
 - Each ticket costs **1,000 KRW** and contains **6 unique random numbers** between **1** and **45**.
-- Display the total number of tickets purchased.
+- Display the total number of tickets purchased (both manually and automatically generated).
+- Display all purchased tickets (both manually and automatically generated and sorted).
 - Display each ticket in a new line.
-- Accepts **winning numbers** (6 unique random numbers between 1 and 45) and a **bonus number** (must be different from the winning numbers) from the user.
+- Accepts **winning numbers** (comma-separated, 6 unique random numbers between 1 and 45) and a **bonus number** (must be different from the winning numbers) from the user.
 - Matches purchased tickets against the winning numbers and determines the winning rank:
   - 1st Prize: 6 matches — **2,000,000,000 KRW**
   - 2nd Prize: 5 matches + bonus — **30,000,000 KRW**
