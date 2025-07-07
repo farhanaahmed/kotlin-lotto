@@ -1,8 +1,10 @@
 package lotto.model
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class InputValidatorImplTest {
     private val inputValidator: InputValidator = InputValidatorImpl()
@@ -31,6 +33,67 @@ class InputValidatorImplTest {
             .isEqualTo(
                 "Purchase amount must be an integer number greater than or equal 1000 and divisible by 1000.",
             )
+    }
+
+    @Test
+    fun `works for valid number of manual tickets`() {
+        val tickets =
+            listOf(
+                listOf(1, 2, 3, 4, 5, 6),
+                listOf(10, 11, 12, 13, 14, 15),
+            )
+
+        assertDoesNotThrow {
+            inputValidator.validateManualTickets(2, tickets)
+        }
+    }
+
+    @Test
+    fun `fails when a ticket does not have exactly 6 numbers`() {
+        val tickets =
+            listOf(
+                listOf(1, 2, 3, 4, 5),
+                listOf(10, 11, 12, 13, 14, 15),
+            )
+
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                inputValidator.validateManualTickets(2, tickets)
+            }
+
+        assertEquals("Manual ticket must contain exactly 6 integer numbers separated by comma.", exception.message)
+    }
+
+    @Test
+    fun `fails when numbers are out of range`() {
+        val tickets =
+            listOf(
+                listOf(1, 2, 3, 4, 5, 100),
+                listOf(10, 11, 12, 13, 14, 15),
+            )
+
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                inputValidator.validateManualTickets(2, tickets)
+            }
+
+        assertEquals("Manual ticket's numbers must be between 1 and 45.", exception.message)
+    }
+
+    @Test
+    fun `fails when numbers are not unique`() {
+        val tickets =
+            listOf(
+                listOf(1, 1, 2, 3, 4, 5),
+                listOf(10, 11, 12, 13, 14, 15),
+            )
+
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                inputValidator.validateManualTickets(2, tickets)
+            }
+
+        assertEquals("Manual ticket's numbers must be unique.", exception.message)
     }
 
     @Test
