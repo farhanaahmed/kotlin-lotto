@@ -3,6 +3,11 @@ package lotto.model
 interface InputValidator {
     fun validatePurchaseAmount(purchaseAmount: Int)
 
+    fun validateManualTickets(
+        numberOfManualTickets: Int,
+        manualTickets: List<List<Int>>,
+    )
+
     fun validateWinningNumbers(winningNumbers: List<Int>)
 
     fun validateBonusNumber(
@@ -15,6 +20,24 @@ class InputValidatorImpl : InputValidator {
     override fun validatePurchaseAmount(purchaseAmount: Int) {
         require(purchaseAmount >= DIVISOR && purchaseAmount % DIVISOR == 0) {
             "Purchase amount must be an integer number greater than or equal 1000 and divisible by 1000."
+        }
+    }
+
+    override fun validateManualTickets(
+        numberOfManualTickets: Int,
+        manualTickets: List<List<Int>>,
+    ) {
+        repeat(numberOfManualTickets) { it ->
+            val ticket = manualTickets[it]
+            require(ticket.size == REQUIRED_COUNT) {
+                "Manual ticket must contain exactly 6 integer numbers separated by comma."
+            }
+            require(ticket.all { it in LOWER_RANGE..UPPER_RANGE }) {
+                "Manual ticket's numbers must be between 1 and 45."
+            }
+            require(ticket.distinct().size == REQUIRED_COUNT) {
+                "Manual ticket's numbers must be unique."
+            }
         }
     }
 
