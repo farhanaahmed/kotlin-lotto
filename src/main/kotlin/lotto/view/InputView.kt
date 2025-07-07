@@ -3,6 +3,8 @@ package lotto.view
 interface InputView {
     fun readPurchaseAmount(): Int
 
+    fun readManualNumberOfTickets(): Int
+
     fun readWinningNumbers(): List<Int>
 
     fun readBonusNumber(): Int
@@ -15,6 +17,15 @@ class InputViewImpl : InputView {
             readln().toIntOrNull() ?: throw IllegalArgumentException("Input can not be empty.")
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("Purchase amount must be a number.")
+        }
+    }
+
+    override fun readManualNumberOfTickets(): Int {
+        println("Enter the number of manual tickets to purchase.")
+        return try {
+            readln().toIntOrNull() ?: throw IllegalArgumentException("Input can not be empty.")
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException("The number of manual tickets must be a number.")
         }
     }
 
