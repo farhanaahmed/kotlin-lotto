@@ -5,7 +5,7 @@ interface InputView {
 
     fun readManualNumberOfTickets(): Int
 
-    fun readManualTickets(): List<List<Int>>
+    fun readManualTickets(numberOfManualTickets: Int): List<List<Int>>
 
     fun readWinningNumbers(): List<Int>
 
@@ -31,9 +31,8 @@ class InputViewImpl : InputView {
         }
     }
 
-    override fun readManualTickets(): List<List<Int>> {
+    override fun readManualTickets(numberOfManualTickets: Int): List<List<Int>> {
         println("Enter the numbers for manual tickets.")
-        val numberOfManualTickets = readManualNumberOfTickets()
         val manualTickets = mutableListOf<List<Int>>()
 
         repeat(numberOfManualTickets) {
