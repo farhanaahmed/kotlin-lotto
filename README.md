@@ -64,7 +64,16 @@ Overall, both practices challenged me, but in a very positive way. I feel like I
 
 Please enter the purchase amount. <br>
 14000 <br>
-You have purchased 14 tickets. <br>
+
+Enter the number of manual tickets to purchase. <br>
+3 <br>
+
+Enter the numbers for manual tickets. <br>
+8, 21, 23, 41, 42, 43 <br>
+3, 5, 11, 16, 32, 38 <br>
+7, 11, 16, 35, 36, 44 <br>
+
+Purchased 3 manual and 11 automatic tickets. <br>
 [8, 21, 23, 41, 42, 43] <br>
 [3, 5, 11, 16, 32, 38] <br>
 [7, 11, 16, 35, 36, 44] <br>
@@ -78,21 +87,22 @@ You have purchased 14 tickets. <br>
 [2, 8, 9, 18, 19, 21] <br>
 [13, 14, 18, 21, 23, 35] <br>
 [17, 21, 29, 37, 42, 45] <br>
-[3, 8, 27, 30, 35, 44] 
+[3, 8, 27, 30, 35, 44] <br>
 
 Please enter last week’s winning numbers. <br>
 1, 2, 3, 4, 5, 6 <br>
-Please enter the bonus number. <br>
-7
+Please enter the bonus number.<br>
+7 <br>
 
 Winning Statistics <br>
-<span> ------------------ </span> <br>
+<span> ------------------ </span>
 3 Matches (5,000 KRW) - 1 tickets <br>
 4 Matches (50,000 KRW) - 0 tickets <br>
 5 Matches (1,500,000 KRW) - 0 tickets <br>
 5 Matches + Bonus Ball (30,000,000 KRW) - 0 tickets <br>
 6 Matches (2,000,000,000 KRW) - 0 tickets <br>
 Total return rate is 0.35 (A rate below 1 means a loss) <br>
+
 
 ---
 
