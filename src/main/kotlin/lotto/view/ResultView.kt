@@ -8,7 +8,7 @@ interface ResultView {
 
     fun printNumberOfTickets(numberOfTickets: Int)
 
-    fun printTickets(tickets: List<Lotto>)
+    fun printTickets(tickets: Set<Lotto>)
 
     fun printStatistics(statistics: Map<Rank, Int>)
 
@@ -25,7 +25,7 @@ class ResultViewImpl : ResultView {
         println(NUMBER_OF_TICKETS_MESSAGE.format(numberOfTickets))
     }
 
-    override fun printTickets(tickets: List<Lotto>) {
+    override fun printTickets(tickets: Set<Lotto>) {
         tickets.forEach { ticket ->
             println(ticket)
         }
