@@ -21,7 +21,14 @@ class LottoControllerImpl(
     private fun processTickets(purchaseAmount: Int): Set<Lotto> {
         val numberOfTickets = lottoTicketGenerator.generateNumberOfTickets(purchaseAmount)
         resultView.printNumberOfTickets(numberOfTickets)
-        val tickets = lottoTicketGenerator.generateTickets(numberOfTickets)
+        val numberOfManualTickets = inputView.readManualNumberOfTickets()
+        val manualTickets = inputView.readManualTickets(numberOfManualTickets)
+        val tickets =
+            lottoTicketGenerator
+                .generateTickets(
+                    manualTickets,
+                    numberOfTickets,
+                )
         resultView.printTickets(tickets)
         return tickets
     }

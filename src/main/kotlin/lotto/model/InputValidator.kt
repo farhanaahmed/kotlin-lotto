@@ -5,7 +5,7 @@ interface InputValidator {
 
     fun validateManualTickets(
         numberOfManualTickets: Int,
-        manualTickets: List<List<Int>>,
+        manualTickets: Set<Set<Int>>,
     )
 
     fun validateWinningNumbers(winningNumbers: List<Int>)
@@ -25,18 +25,14 @@ class InputValidatorImpl : InputValidator {
 
     override fun validateManualTickets(
         numberOfManualTickets: Int,
-        manualTickets: List<List<Int>>,
+        manualTickets: Set<Set<Int>>,
     ) {
-        repeat(numberOfManualTickets) { it ->
-            val ticket = manualTickets[it]
+        manualTickets.forEach { ticket ->
             require(ticket.size == REQUIRED_COUNT) {
                 "Manual ticket must contain exactly 6 integer numbers separated by comma."
             }
             require(ticket.all { it in LOWER_RANGE..UPPER_RANGE }) {
                 "Manual ticket's numbers must be between 1 and 45."
-            }
-            require(ticket.distinct().size == REQUIRED_COUNT) {
-                "Manual ticket's numbers must be unique."
             }
         }
     }

@@ -38,27 +38,29 @@ class InputValidatorImplTest {
     @Test
     fun `doesn't throw an exception for valid number of manual tickets`() {
         val tickets =
-            listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(10, 11, 12, 13, 14, 15),
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 18),
             )
 
         assertDoesNotThrow {
-            inputValidator.validateManualTickets(2, tickets)
+            inputValidator.validateManualTickets(3, tickets)
         }
     }
 
     @Test
     fun `throws an exception when a ticket does not have exactly 6 numbers`() {
         val tickets =
-            listOf(
-                listOf(1, 2, 3, 4, 5),
-                listOf(10, 11, 12, 13, 14, 15),
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 18, 20),
             )
 
         val exception =
             assertThrows<IllegalArgumentException> {
-                inputValidator.validateManualTickets(2, tickets)
+                inputValidator.validateManualTickets(3, tickets)
             }
 
         assertEquals("Manual ticket must contain exactly 6 integer numbers separated by comma.", exception.message)
@@ -67,33 +69,18 @@ class InputValidatorImplTest {
     @Test
     fun `throws an exception when numbers are out of range`() {
         val tickets =
-            listOf(
-                listOf(1, 2, 3, 4, 5, 100),
-                listOf(10, 11, 12, 13, 14, 15),
+            setOf(
+                setOf(1, 2, 3, 4, 5, 6),
+                setOf(7, 8, 9, 10, 11, 12),
+                setOf(13, 14, 15, 16, 17, 90),
             )
 
         val exception =
             assertThrows<IllegalArgumentException> {
-                inputValidator.validateManualTickets(2, tickets)
+                inputValidator.validateManualTickets(3, tickets)
             }
 
         assertEquals("Manual ticket's numbers must be between 1 and 45.", exception.message)
-    }
-
-    @Test
-    fun `throws an exception when numbers are not unique`() {
-        val tickets =
-            listOf(
-                listOf(1, 1, 2, 3, 4, 5),
-                listOf(10, 11, 12, 13, 14, 15),
-            )
-
-        val exception =
-            assertThrows<IllegalArgumentException> {
-                inputValidator.validateManualTickets(2, tickets)
-            }
-
-        assertEquals("Manual ticket's numbers must be unique.", exception.message)
     }
 
     @Test
