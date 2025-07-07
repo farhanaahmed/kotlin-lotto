@@ -36,6 +36,25 @@ class InputValidatorImplTest {
     }
 
     @Test
+    fun `should throw error when manual ticket count exceeds budget`() {
+        val purchaseAmount = 1000
+        val manualTickets = 2
+
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                inputValidator
+                    .validateManualTicketAmount(
+                        purchaseAmount,
+                        manualTickets,
+                    )
+            }
+        assertEquals(
+            "Not enough money to buy $manualTickets manual tickets with $purchaseAmount KRW.",
+            exception.message,
+        )
+    }
+
+    @Test
     fun `doesn't throw an exception for valid number of manual tickets`() {
         val tickets =
             listOf(

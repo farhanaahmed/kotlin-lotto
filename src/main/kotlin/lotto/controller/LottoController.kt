@@ -58,6 +58,7 @@ class LottoControllerImpl(
         val purchaseAmount = inputView.readPurchaseAmount()
         inputValidatorImpl.validatePurchaseAmount(purchaseAmount)
         val numberOfManualTickets = inputView.readManualNumberOfTickets()
+        inputValidatorImpl.validateManualTicketAmount(purchaseAmount, numberOfManualTickets)
         val tickets = processTickets(purchaseAmount, numberOfManualTickets)
         val winningNumbers = inputView.readWinningNumbers()
         inputValidatorImpl.validateWinningNumbers(winningNumbers)

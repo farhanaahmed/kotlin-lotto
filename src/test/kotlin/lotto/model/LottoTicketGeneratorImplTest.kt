@@ -17,19 +17,6 @@ class LottoTicketGeneratorImplTest {
 
     private val lottoTicketGenerator: LottoTicketGenerator = LottoTicketGeneratorImpl(randomNumbersGeneratorWrapper)
 
-    //    @ParameterizedTest
-//    @ValueSource(ints = [1000, 2000, 3000, 4000, 15000])
-//    fun `generate the correct number of tickets`(purchaseAmounts: Int) {
-//        val numberOfManualTickets = 3
-//        val rightNumberOfTickets = purchaseAmounts - (numberOfManualTickets * 1000) / 1000
-//        val numberOfTickets =
-//            lottoTicketGenerator
-//                .generateNumberOfTickets(
-//                    purchaseAmounts,
-//                    numberOfManualTickets,
-//                )
-//        assertThat(rightNumberOfTickets).isEqualTo(numberOfTickets)
-//    }
     @ParameterizedTest
     @ValueSource(ints = [1000, 2000, 3000, 4000, 15000])
     fun `generate the correct number of tickets`(purchaseAmount: Int) {

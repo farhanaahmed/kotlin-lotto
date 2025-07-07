@@ -3,6 +3,11 @@ package lotto.model
 interface InputValidator {
     fun validatePurchaseAmount(purchaseAmount: Int)
 
+    fun validateManualTicketAmount(
+        purchaseAmount: Int,
+        numberOfManualTickets: Int,
+    )
+
     fun validateManualTickets(
         numberOfManualTickets: Int,
         manualTickets: List<List<Int>>,
@@ -20,6 +25,15 @@ class InputValidatorImpl : InputValidator {
     override fun validatePurchaseAmount(purchaseAmount: Int) {
         require(purchaseAmount >= DIVISOR && purchaseAmount % DIVISOR == 0) {
             "Purchase amount must be an integer number greater than or equal 1000 and divisible by 1000."
+        }
+    }
+
+    override fun validateManualTicketAmount(
+        purchaseAmount: Int,
+        numberOfManualTickets: Int,
+    ) {
+        require(purchaseAmount >= numberOfManualTickets * 1000) {
+            "Not enough money to buy $numberOfManualTickets manual tickets with $purchaseAmount units."
         }
     }
 

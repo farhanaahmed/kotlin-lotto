@@ -31,12 +31,10 @@ class WinningStatisticsImpl : WinningStatistics {
 
     override fun calculateReturnRate(purchaseAmount: Int): Double {
         val totalPrize =
-            results
-                .entries
-                .sumOf { (rank, count) ->
-                    rank
-                        .winningMoney * count
-                }
+            results.entries.sumOf { (rank, count) ->
+                rank.winningMoney.toLong() * count // Prevents overflow
+            }
+
         return (totalPrize.toDouble() / purchaseAmount)
     }
 }
