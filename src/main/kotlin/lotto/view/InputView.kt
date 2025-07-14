@@ -1,5 +1,8 @@
 package lotto.view
 
+import lotto.model.ManualTicket
+import lotto.model.WinningNumbers
+
 class InputView {
     fun readPurchaseAmount(): Int {
         println("Please enter the purchase amount.")
@@ -19,9 +22,9 @@ class InputView {
         }
     }
 
-    fun readManualTickets(numberOfManualTickets: Int): List<List<Int>> {
+    fun readManualTickets(numberOfManualTickets: Int): List<ManualTicket> {
         println("Enter the numbers for manual tickets.")
-        val manualTickets = mutableListOf<List<Int>>()
+        val manualTickets = mutableListOf<ManualTicket>()
 
         repeat(numberOfManualTickets) {
             try {
@@ -32,7 +35,9 @@ class InputView {
                             it.trim().toInt()
                         } ?: throw IllegalArgumentException("Input cannot be empty.")
 
-                manualTickets.add(ticket)
+                manualTickets.add(
+                    ManualTicket(ticket),
+                )
             } catch (e: NumberFormatException) {
                 throw IllegalArgumentException("Manual tickets must contain only integer numbers separated by commas.")
             }
@@ -41,14 +46,16 @@ class InputView {
         return manualTickets
     }
 
-    fun readWinningNumbers(): List<Int> {
+    fun readWinningNumbers(): WinningNumbers {
         println("Please enter last week’s winning numbers.")
         return try {
-            readlnOrNull()
-                ?.split(",")
-                ?.map {
-                    it.toInt()
-                } ?: throw IllegalArgumentException("Input can not be empty.")
+            val winningNumbers =
+                readlnOrNull()
+                    ?.split(",")
+                    ?.map {
+                        it.toInt()
+                    } ?: throw IllegalArgumentException("Input can not be empty.")
+            WinningNumbers(winningNumbers)
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("Winning numbers must contain only integer numbers separated by comma.")
         }

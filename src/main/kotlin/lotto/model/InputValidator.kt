@@ -16,40 +16,37 @@ class InputValidator {
         }
     }
 
-    fun validateManualTickets(
-        numberOfManualTickets: Int,
-        manualTickets: List<List<Int>>,
-    ) {
+    fun validateManualTickets(manualTickets: List<ManualTicket>) {
         manualTickets.forEach { ticket ->
-            require(ticket.size == REQUIRED_COUNT) {
+            require(ticket.toList().size == REQUIRED_COUNT) {
                 "Manual ticket must contain exactly 6 integer numbers separated by comma."
             }
-            require(ticket.all { it in LOWER_RANGE..UPPER_RANGE }) {
+            require(ticket.toList().all { it in LOWER_RANGE..UPPER_RANGE }) {
                 "Manual ticket's numbers must be between 1 and 45."
             }
         }
     }
 
-    fun validateWinningNumbers(winningNumbers: List<Int>) {
-        require(winningNumbers.size == REQUIRED_COUNT) {
+    fun validateWinningNumbers(winningNumbers: WinningNumbers) {
+        require(winningNumbers.toList().size == REQUIRED_COUNT) {
             "Winning numbers must contain exactly 6 integer numbers separated by comma."
         }
-        require(winningNumbers.all { it in LOWER_RANGE..UPPER_RANGE }) {
+        require(winningNumbers.toList().all { it in LOWER_RANGE..UPPER_RANGE }) {
             "Winning numbers must be between 1 and 45."
         }
-        require(winningNumbers.distinct().size == REQUIRED_COUNT) {
+        require(winningNumbers.toList().distinct().size == REQUIRED_COUNT) {
             "Winning numbers must be unique."
         }
     }
 
     fun validateBonusNumber(
         bonusNumber: Int,
-        winningNumbers: List<Int>,
+        winningNumbers: WinningNumbers,
     ) {
         require(bonusNumber in LOWER_RANGE..UPPER_RANGE) {
             "Bonus number must be a positive integer between 1 and 45."
         }
-        require(bonusNumber !in winningNumbers) {
+        require(bonusNumber !in winningNumbers.toList()) {
             "Bonus number must be distinct from winning numbers."
         }
     }

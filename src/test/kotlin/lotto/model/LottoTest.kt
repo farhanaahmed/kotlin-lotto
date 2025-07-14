@@ -43,7 +43,7 @@ class LottoTest {
     @Test
     fun `counts matching numbers correctly`() {
         val lotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
-        val winningNumbers = listOf(1, 2, 7, 8, 9, 10)
+        val winningNumbers = WinningNumbers(listOf(1, 2, 7, 8, 9, 10))
 
         assertThat(lotto.matchCount(winningNumbers)).isEqualTo(2)
     }
@@ -71,5 +71,12 @@ class LottoTest {
         val tickets = lotto.getTickets()
 
         assertThat(tickets).isEqualTo(listOf(1, 5, 12, 28, 39, 44))
+    }
+
+    @Test
+    fun compare() {
+        val lotto1 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val lotto2 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        assertThat(lotto1.toString()).isEqualTo(lotto2.toString())
     }
 }

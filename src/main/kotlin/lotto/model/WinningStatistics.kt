@@ -4,11 +4,11 @@ class WinningStatistics {
     private val results = mutableMapOf<Rank, Int>()
 
     fun calculateResult(
-        tickets: List<Lotto>,
-        winningNumbers: List<Int>,
+        tickets: Tickets,
+        winningNumbers: WinningNumbers,
         bonusNumber: Int,
     ): Map<Rank, Int> {
-        tickets.forEach { ticket ->
+        tickets.toList().forEach { ticket ->
             val countOfMatch = ticket.matchCount(winningNumbers)
             val matchBonus = ticket.containsBonus(bonusNumber)
             val rank = Rank.valueOf(countOfMatch, matchBonus)

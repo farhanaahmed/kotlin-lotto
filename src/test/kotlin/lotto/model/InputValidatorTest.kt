@@ -58,28 +58,34 @@ class InputValidatorTest {
     fun `doesn't throw an exception for valid number of manual tickets`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 18),
+                ManualTicket(
+                    listOf(1, 2, 3, 4, 5, 6),
+                ),
+                ManualTicket(
+                    listOf(7, 8, 9, 10, 11, 12),
+                ),
+                ManualTicket(
+                    listOf(13, 14, 15, 16, 17, 18),
+                ),
             )
 
         assertDoesNotThrow {
-            inputValidator.validateManualTickets(3, tickets)
+            inputValidator.validateManualTickets(tickets)
         }
     }
 
     @Test
-    fun `throws an exception when a ticket does not have exactly 6 numbers`() {
+    fun `throws an exception when a manual ticket does not have exactly 6 numbers`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 18, 20),
+                ManualTicket(listOf(1, 2, 3, 4, 5, 6)),
+                ManualTicket(listOf(7, 8, 9, 10, 11, 12)),
+                ManualTicket(listOf(13, 14, 15, 16, 17, 18, 20)),
             )
 
         val exception =
             assertThrows<IllegalArgumentException> {
-                inputValidator.validateManualTickets(3, tickets)
+                inputValidator.validateManualTickets(tickets)
             }
 
         assertEquals("Manual ticket must contain exactly 6 integer numbers separated by comma.", exception.message)
@@ -89,14 +95,14 @@ class InputValidatorTest {
     fun `throws an exception when numbers are out of range`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 90),
+                ManualTicket(listOf(1, 2, 3, 4, 5, 6)),
+                ManualTicket(listOf(7, 8, 9, 10, 11, 12)),
+                ManualTicket(listOf(13, 14, 15, 16, 17, 90)),
             )
 
         val exception =
             assertThrows<IllegalArgumentException> {
-                inputValidator.validateManualTickets(3, tickets)
+                inputValidator.validateManualTickets(tickets)
             }
 
         assertEquals("Manual ticket's numbers must be between 1 and 45.", exception.message)
@@ -107,7 +113,7 @@ class InputValidatorTest {
         val lessNumberException =
             assertThrows<IllegalArgumentException> {
                 inputValidator
-                    .validateWinningNumbers(listOf(1, 2, 3, 4, 5))
+                    .validateWinningNumbers(WinningNumbers(listOf(1, 2, 3, 4, 5)))
             }
         assertThat(lessNumberException.message)
             .isEqualTo(
@@ -117,7 +123,7 @@ class InputValidatorTest {
         val moreNumberException =
             assertThrows<IllegalArgumentException> {
                 inputValidator
-                    .validateWinningNumbers(listOf(1, 2, 3, 4, 5, 6, 7))
+                    .validateWinningNumbers(WinningNumbers(listOf(1, 2, 3, 4, 5, 6, 7)))
             }
         assertThat(moreNumberException.message)
             .isEqualTo(
@@ -130,7 +136,7 @@ class InputValidatorTest {
         val exception =
             assertThrows<IllegalArgumentException> {
                 inputValidator
-                    .validateWinningNumbers(listOf(0, 2, 3, 4, 5, 4))
+                    .validateWinningNumbers(WinningNumbers(listOf(0, 2, 3, 4, 5, 4)))
             }
         assertThat(exception.message).isEqualTo("Winning numbers must be between 1 and 45.")
     }
@@ -140,7 +146,11 @@ class InputValidatorTest {
         val exception =
             assertThrows<IllegalArgumentException> {
                 inputValidator
-                    .validateWinningNumbers(listOf(1, 2, 2, 4, 5, 6))
+                    .validateWinningNumbers(
+                        WinningNumbers(
+                            listOf(1, 2, 2, 4, 5, 6),
+                        ),
+                    )
             }
         assertThat(exception.message).isEqualTo("Winning numbers must be unique.")
     }
@@ -150,7 +160,12 @@ class InputValidatorTest {
         val exception =
             assertThrows<IllegalArgumentException> {
                 inputValidator
-                    .validateBonusNumber(0, listOf(1, 2, 3, 4, 5, 6))
+                    .validateBonusNumber(
+                        0,
+                        WinningNumbers(
+                            listOf(1, 2, 3, 4, 5, 6),
+                        ),
+                    )
             }
         assertThat(exception.message).isEqualTo("Bonus number must be a positive integer between 1 and 45.")
     }
@@ -160,7 +175,12 @@ class InputValidatorTest {
         val exception =
             assertThrows<IllegalArgumentException> {
                 inputValidator
-                    .validateBonusNumber(4, listOf(1, 2, 3, 4, 5, 6))
+                    .validateBonusNumber(
+                        4,
+                        WinningNumbers(
+                            listOf(1, 2, 3, 4, 5, 6),
+                        ),
+                    )
             }
         assertThat(exception.message).isEqualTo("Bonus number must be distinct from winning numbers.")
     }

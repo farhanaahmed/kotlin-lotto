@@ -36,9 +36,15 @@ class LottoTicketGeneratorTest {
     fun `generates tickets with 6 numbers each`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 18),
+                ManualTicket(
+                    listOf(1, 2, 3, 4, 5, 6),
+                ),
+                ManualTicket(
+                    listOf(7, 8, 9, 10, 11, 12),
+                ),
+                ManualTicket(
+                    listOf(13, 14, 15, 16, 17, 18),
+                ),
             )
         val numberOfTickets = 3
 
@@ -53,9 +59,15 @@ class LottoTicketGeneratorTest {
     fun `generates tickets with numbers between 1 and 45`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 18),
+                ManualTicket(
+                    listOf(1, 2, 3, 4, 5, 6),
+                ),
+                ManualTicket(
+                    listOf(7, 8, 9, 10, 11, 12),
+                ),
+                ManualTicket(
+                    listOf(13, 14, 15, 16, 17, 18),
+                ),
             )
         val numberOfTickets = 2
 
@@ -72,9 +84,15 @@ class LottoTicketGeneratorTest {
     fun `throws an exception if ticket has more than 6 numbers`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 18),
+                ManualTicket(
+                    listOf(1, 2, 3, 4, 5, 6),
+                ),
+                ManualTicket(
+                    listOf(7, 8, 9, 10, 11, 12),
+                ),
+                ManualTicket(
+                    listOf(13, 14, 15, 16, 17, 18),
+                ),
             )
         val faultyRandomNumbersGenerator =
             object :
@@ -94,9 +112,15 @@ class LottoTicketGeneratorTest {
     fun `throws an exception if ticket has less than 6 numbers`() {
         val tickets =
             listOf(
-                listOf(1, 2, 3, 4, 5, 6),
-                listOf(7, 8, 9, 10, 11, 12),
-                listOf(13, 14, 15, 16, 17, 18),
+                ManualTicket(
+                    listOf(1, 2, 3, 4, 5, 6),
+                ),
+                ManualTicket(
+                    listOf(7, 8, 9, 10, 11, 12),
+                ),
+                ManualTicket(
+                    listOf(13, 14, 15, 16, 17, 18),
+                ),
             )
         val faultyRandomNumbersGenerator =
             object :

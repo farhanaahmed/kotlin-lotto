@@ -10,8 +10,8 @@ class Lotto(private val numbers: List<Int>) {
         sortedNumbers = numbers.sorted()
     }
 
-    fun matchCount(winningNumbers: List<Int>): Int {
-        return numbers.count { it in winningNumbers }
+    fun matchCount(winningNumbers: WinningNumbers): Int {
+        return numbers.count { it in winningNumbers.toList() }
     }
 
     fun containsBonus(bonusNumber: Int): Boolean {

@@ -10,11 +10,11 @@ class LottoTicketGenerator(private val randomNumbersGeneratorWrapper: RandomNumb
     }
 
     fun generateTickets(
-        manualTickets: List<List<Int>>,
+        manualTickets: List<ManualTicket>,
         numberOfTickets: Int,
     ): List<Lotto> {
         val tickets = mutableListOf<Lotto>()
-        tickets.addAll(manualTickets.map { Lotto(it.sorted()) })
+        tickets.addAll(manualTickets.map { Lotto(it.toList().sorted()) })
         repeat(numberOfTickets) {
             val singleTicket = generateRandomNumbers().sorted()
             val lottoTicket = Lotto(singleTicket)

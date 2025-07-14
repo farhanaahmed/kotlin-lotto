@@ -8,16 +8,21 @@ class WinningStatisticsTest {
 
     @Test
     fun `calculateResult returns correct rank counts`() {
-        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val winningNumbers =
+            WinningNumbers(
+                listOf(1, 2, 3, 4, 5, 6),
+            )
         val bonusNumber = 7
         val tickets =
-            listOf(
-                Lotto(listOf(1, 2, 3, 4, 5, 6)),
-                Lotto(listOf(1, 2, 3, 4, 5, 7)),
-                Lotto(listOf(1, 2, 3, 4, 5, 8)),
-                Lotto(listOf(1, 2, 3, 4, 8, 9)),
-                Lotto(listOf(1, 2, 3, 8, 9, 10)),
-                Lotto(listOf(1, 2, 8, 9, 10, 11)),
+            Tickets(
+                listOf(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 8)),
+                    Lotto(listOf(1, 2, 3, 4, 8, 9)),
+                    Lotto(listOf(1, 2, 3, 8, 9, 10)),
+                    Lotto(listOf(1, 2, 8, 9, 10, 11)),
+                ),
             )
 
         val result = winningStatisticsImplTest.calculateResult(tickets, winningNumbers, bonusNumber)
@@ -32,12 +37,17 @@ class WinningStatisticsTest {
 
     @Test
     fun `returns correct return rate`() {
-        val winningNumbers = listOf(1, 2, 3, 4, 5, 6)
+        val winningNumbers =
+            WinningNumbers(
+                listOf(1, 2, 3, 4, 5, 6),
+            )
         val bonusNumber = 7
         val tickets =
-            listOf(
-                Lotto(listOf(1, 2, 3, 4, 5, 6)),
-                Lotto(listOf(1, 2, 3, 4, 5, 7)),
+            Tickets(
+                listOf(
+                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
+                ),
             )
         winningStatisticsImplTest.calculateResult(tickets, winningNumbers, bonusNumber)
         val purchaseAmount = 2000
