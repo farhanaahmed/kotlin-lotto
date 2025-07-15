@@ -4,10 +4,6 @@ import lotto.model.Lotto
 import lotto.model.Rank
 
 class ResultView {
-    fun printBlankLine() {
-        println()
-    }
-
     fun printNumberOfTickets(
         numberOfManualTickets: Int,
         numberOfTickets: Int,
