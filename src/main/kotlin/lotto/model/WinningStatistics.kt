@@ -25,6 +25,6 @@ class WinningStatistics {
                 rank.winningMoney.toLong() * count // Prevents overflow
             }
 
-        return (totalPrize.toDouble() / purchaseAmount)
+        return totalPrize.toDouble() / purchaseAmount
     }
 }
