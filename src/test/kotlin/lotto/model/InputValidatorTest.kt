@@ -1,5 +1,6 @@
 package lotto.model
 
+import lotto.view.InputValidator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows

@@ -1,10 +1,10 @@
 package lotto
 
 import lotto.controller.LottoController
-import lotto.model.InputValidator
 import lotto.model.LottoTicketGenerator
 import lotto.model.RandomNumbersGeneratorWrapperImpl
 import lotto.model.WinningStatistics
+import lotto.view.InputValidator
 import lotto.view.InputView
 import lotto.view.ResultView
 

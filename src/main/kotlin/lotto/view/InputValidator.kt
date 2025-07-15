@@ -1,4 +1,7 @@
-package lotto.model
+package lotto.view
+
+import lotto.model.ManualTicket
+import lotto.model.WinningNumbers
 
 class InputValidator {
     fun validatePurchaseAmount(purchaseAmount: Int) {
