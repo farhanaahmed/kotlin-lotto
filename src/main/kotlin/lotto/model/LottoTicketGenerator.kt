@@ -23,7 +23,7 @@ class LottoTicketGenerator(private val randomNumbersGeneratorWrapper: RandomNumb
         return tickets
     }
 
-    fun generateRandomNumbers(): List<Int> {
+    private fun generateRandomNumbers(): List<Int> {
         return randomNumbersGeneratorWrapper.generateRandomNumbers()
     }
 
