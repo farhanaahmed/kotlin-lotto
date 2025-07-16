@@ -1,7 +1,8 @@
-package lotto.model
+package lotto.view
 
-import lotto.view.InputValidator
-import org.assertj.core.api.Assertions.assertThat
+import lotto.model.ManualTicket
+import lotto.model.WinningNumbers
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
@@ -17,7 +18,7 @@ class InputValidatorTest {
                 inputValidator
                     .validatePurchaseAmount(500)
             }
-        assertThat(exception.message)
+        Assertions.assertThat(exception.message)
             .isEqualTo(
                 "Purchase amount must be an integer number greater than or equal 1000 and divisible by 1000.",
             )
@@ -30,7 +31,7 @@ class InputValidatorTest {
                 inputValidator
                     .validatePurchaseAmount(1500)
             }
-        assertThat(exception.message)
+        Assertions.assertThat(exception.message)
             .isEqualTo(
                 "Purchase amount must be an integer number greater than or equal 1000 and divisible by 1000.",
             )
@@ -116,7 +117,7 @@ class InputValidatorTest {
                 inputValidator
                     .validateWinningNumbers(WinningNumbers(listOf(1, 2, 3, 4, 5)))
             }
-        assertThat(lessNumberException.message)
+        Assertions.assertThat(lessNumberException.message)
             .isEqualTo(
                 "Winning numbers must contain exactly 6 integer numbers separated by comma.",
             )
@@ -126,7 +127,7 @@ class InputValidatorTest {
                 inputValidator
                     .validateWinningNumbers(WinningNumbers(listOf(1, 2, 3, 4, 5, 6, 7)))
             }
-        assertThat(moreNumberException.message)
+        Assertions.assertThat(moreNumberException.message)
             .isEqualTo(
                 "Winning numbers must contain exactly 6 integer numbers separated by comma.",
             )
@@ -139,7 +140,7 @@ class InputValidatorTest {
                 inputValidator
                     .validateWinningNumbers(WinningNumbers(listOf(0, 2, 3, 4, 5, 4)))
             }
-        assertThat(exception.message).isEqualTo("Winning numbers must be between 1 and 45.")
+        Assertions.assertThat(exception.message).isEqualTo("Winning numbers must be between 1 and 45.")
     }
 
     @Test
@@ -153,7 +154,7 @@ class InputValidatorTest {
                         ),
                     )
             }
-        assertThat(exception.message).isEqualTo("Winning numbers must be unique.")
+        Assertions.assertThat(exception.message).isEqualTo("Winning numbers must be unique.")
     }
 
     @Test
@@ -168,7 +169,7 @@ class InputValidatorTest {
                         ),
                     )
             }
-        assertThat(exception.message).isEqualTo("Bonus number must be a positive integer between 1 and 45.")
+        Assertions.assertThat(exception.message).isEqualTo("Bonus number must be a positive integer between 1 and 45.")
     }
 
     @Test
@@ -183,6 +184,6 @@ class InputValidatorTest {
                         ),
                     )
             }
-        assertThat(exception.message).isEqualTo("Bonus number must be distinct from winning numbers.")
+        Assertions.assertThat(exception.message).isEqualTo("Bonus number must be distinct from winning numbers.")
     }
 }
